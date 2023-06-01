@@ -1,6 +1,5 @@
 <template>
   <aside class="sidebar">
-    <template>
   <v-card>
     <v-layout>
       <v-navigation-drawer
@@ -27,14 +26,11 @@
       <v-main style="height: 250px"></v-main>
     </v-layout>
   </v-card>
-</template>
   </aside>
 </template>
 
 <style scoped>
 .sidebar {
-  background-color: purple; /* Cor principal roxa */
   width: 250px;
-  /* Estilos adicionais para a sidebar */
 }
 </style>
