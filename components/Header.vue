@@ -1,13 +1,17 @@
 <template>
-  <header class="header">
+  <header>
     <!-- Conteúdo do header -->
+    <button class="btn btn-primary" @click="toggleSidebar">Minimizar Sidebar</button>
   </header>
 </template>
 
-<style scoped>
-.header {
-  background-color: purple; /* Cor principal roxa */
-  height: 60px;
-  /* Estilos adicionais para o header */
-}
-</style>
+<script>
+export default {
+  methods: {
+    toggleSidebar() {
+      // Emita um evento personalizado para o componente Sidebar controlar a minimização
+      this.$emit('toggle-sidebar');
+    },
+  },
+};
+</script>

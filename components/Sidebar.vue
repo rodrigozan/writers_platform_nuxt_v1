@@ -1,32 +1,31 @@
 <template>
-  <aside :class="['sidebar', { 'sidebar-collapsed': isCollapsed }]">
+  <div :class="['sidebar', { 'sidebar-minimized': isMinimized }]">
     <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Página Inicial</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">Sobre</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/contact">Contato</a>
+      <li class="nav-item" v-for="link in links" :key="link.id">
+        <a class="nav-link" :href="link.url">{{ link.label }}</a>
       </li>
     </ul>
-    <button @click="toggleSidebar" class="btn btn-primary btn-sm toggle-button">
-      {{ isCollapsed ? "Expandir" : "Minimizar" }}
+    <button class="btn btn-primary toggle-button" @click="toggleSidebar">
+      Minimizar Sidebar
     </button>
-  </aside>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      isCollapsed: false,
+      isMinimized: false,
+      links: [
+        { id: 1, label: 'Home', url: '/' },
+        { id: 2, label: 'About', url: '/about' },
+        { id: 3, label: 'Contact', url: '/contact' },
+      ],
     };
   },
   methods: {
     toggleSidebar() {
-      this.isCollapsed = !this.isCollapsed;
+      this.isMinimized = !this.isMinimized;
     },
   },
 };
@@ -35,16 +34,15 @@ export default {
 <style scoped>
 .sidebar {
   width: 250px;
-  transition: width 0.3s ease;
+  background-color: #f8f9fa;
+  /* Estilos adicionais para a sidebar */
 }
 
-.sidebar-collapsed {
-  width: 80px;
+.sidebar-minimized {
+  width: 60px;
 }
 
 .toggle-button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  margin: 10px;
 }
 </style>
