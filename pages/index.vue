@@ -31,6 +31,7 @@ import { Configuration, OpenAIApi } from 'openai'
 
 export default Vue.extend({
   name: 'IndexPage',
+  layout: 'default',
   data() {
     return {
       question: '',
@@ -49,7 +50,7 @@ export default Vue.extend({
       this.isLoading = true
 
       const configuration = new Configuration({
-        apiKey: "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",
+        apiKey: "",
       })
 
       const openai = new OpenAIApi(configuration)
