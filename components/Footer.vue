@@ -33,3 +33,9 @@
     }),
   }
 </script>
+
+<style lang="scss" scoped>
+  v-footer{
+  clear: both;
+  }
+</style>
