@@ -16,7 +16,7 @@
     </div>
 
     <div class="px-4 py-2 bg-black text-center w-100">
-      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      <p>© {{ new Date().getFullYear() }} <strong>Griots</strong> - Todos os direitos reservados</p>
     </div>
   </v-footer>
 </template>

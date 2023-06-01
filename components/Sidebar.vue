@@ -1,36 +1,50 @@
 <template>
-  <aside class="sidebar">
-  <v-card>
-    <v-layout>
-      <v-navigation-drawer
-        expand-on-hover
-        rail
-      >
-        <v-list>
-          <v-list-item
-            prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-            title="Sandra Adams"
-            subtitle="sandra_a88@gmailcom"
-          ></v-list-item>
-        </v-list>
-
-        <v-divider></v-divider>
-
-        <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-multiple" title="Shared with me" value="shared"></v-list-item>
-          <v-list-item prepend-icon="mdi-star" title="Starred" value="starred"></v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-
-      <v-main style="height: 250px"></v-main>
-    </v-layout>
-  </v-card>
+  <aside :class="['sidebar', { 'sidebar-collapsed': isCollapsed }]">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Página Inicial</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">Sobre</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact">Contato</a>
+      </li>
+    </ul>
+    <button @click="toggleSidebar" class="btn btn-primary btn-sm toggle-button">
+      {{ isCollapsed ? "Expandir" : "Minimizar" }}
+    </button>
   </aside>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isCollapsed: false,
+    };
+  },
+  methods: {
+    toggleSidebar() {
+      this.isCollapsed = !this.isCollapsed;
+    },
+  },
+};
+</script>
 
 <style scoped>
 .sidebar {
   width: 250px;
+  transition: width 0.3s ease;
+}
+
+.sidebar-collapsed {
+  width: 80px;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 </style>
