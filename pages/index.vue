@@ -31,6 +31,7 @@ import { Configuration, OpenAIApi } from 'openai'
 
 export default Vue.extend({
   name: 'IndexPage',
+  layout: 'default',
   data() {
     return {
       question: '',
