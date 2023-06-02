@@ -2,7 +2,7 @@
   <div>
     <Header />
     <main>
-      <Sidebar />
+      <sidebar></sidebar>
       <nuxt />
     </main>
     <Footer />

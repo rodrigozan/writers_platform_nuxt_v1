@@ -15,19 +15,20 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }], 
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'vuetify/lib/styles/main.sass'
+    '~/assets/css/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/bootstrap-vue',
     '@/plugins/openai',
+    { src: '~/plugins/components.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,14 +53,15 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'https://api.openai.com/v1/engines',
-    credentials: true
-  },
+  axios: {},
 
   build: {
     transpile: ['vuetify'],
+    loaders: {
+      scss: {
+        implementation: require('sass'),
+      },
+    },
   },
 
   // Disable telemetry prompt when starting the dev server
