@@ -27,31 +27,10 @@
 
 <script>
 import Vue from 'vue'
-import { Configuration, OpenAIApi } from 'openai'
 
 export default Vue.extend({
-  name: 'IndexPage',
-  layout: 'default',
-  data() {
-    return {
-      question: '',
-      answer: undefined,
-      response: undefined,
-      index: 0,
-      list: [],
-      isLoading: false,
-    }
-  },
-  mounted() {
-    //this.initialQuestion()
-  },
-  methods: {
-    async initialQuestion() {
-      this.isLoading = true
-
-      const configuration = new Configuration({
-        apiKey: "",
-      })
+  
+})
 
       const openai = new OpenAIApi(configuration)
 
