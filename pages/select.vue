@@ -3,7 +3,7 @@
     <div class="content">
         <h2 class="mb-6">Escolha o que você quer criar hoje:</h2>
         <div class="d-grid gap-2 mb-4">
-            <button v-for="task in tasks" class="btn btn-light fw-bolder" @click="selectTask(task.route)">{{ task.label }}</button>
+            <button v-for="t in task" class="btn btn-light fw-bolder" @click="selectTask(t)">{{ t }}</button>
         </div>
         </div>
     </div>
@@ -14,18 +14,18 @@ import Vue from 'vue'
 
 export default Vue.extend({
 layout: "intro",
+props: {
+  task_selected: ''
+},
 data() {
   return {
-    tasks: [
-      { label: 'Enredo', route: '' },
-      { label: 'Personagem', route: 'personagem' },
-      { label: 'Mundo', route: 'mundo' }
-    ]
+    task: ['Enredo','Personagem','Worldbuilding']
   };
 },
 methods: {
-    selectTask(route) {
-        this.$router.push(`/${route}`);
+    selectTask(selected) {
+      console.log(selected)
+      this.$router.push({ name: 'planning', params: { task: selected } });
     }
 },
 })

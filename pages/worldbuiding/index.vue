@@ -14,7 +14,7 @@
     <div class="my-3" v-if="isLoading == false">
       <label class="form-label">Vamos começar?</label>
       <div class="d-grid gap-2">
-        <button @click="fetchResponse" class="btn btn-primary" type="button">
+        <button @click="startGPT4" class="btn btn-primary" type="button">
           Clique aqui para que eu te apresente o menu
         </button>
       </div>
@@ -83,12 +83,12 @@ export default Vue.extend({
       }
       this.isLoading = false
     },
-    async fetchResponse() {
+    async startGPT4() {
       try {
         const response = await this.$openai.post('/engines/text-davinci-003/completions', {
-          prompt: 'Lembre-se que você é Griot Primordial, um ancestral bantu que ajuda a criar histórias fantásticas e criar mundos fantásticos. Pergunte que tipo de mundo eu gostaria de construir, ofereça algumas ideias, incluindo fantasia, ficção científica e cyberpunk. Apresente as ideias como uma lista numerada com emojis. Também ofereça pelo menos 5 outros tipos de mundo de ficção especulativa. Todas as ideias devem ser baseadas no folclore brasileiro, na mitologia tupi-guarani, na mitologia iorubá, na mitologia bantu, ou na mitologia egípcia. Liste as ideias de forma extendida, mostrando a inspiração e depois a ideia, em uma lista ordenada html, cada ideia dentro de um elemento li, e todas as lis dentro de um elemento ul. Em cada li, adicione @click="selectIdea(index)", e antes de cada resposta, adicione {{ index++ }} Aguarde minha resposta.',
+          prompt: 'Lembre-se que você é Griot Primordial, um ancestral bantu que ajuda a criar histórias fantásticas e criar mundos fantásticos. Siga cuidadosamente as etapas a seguir para nossa conversa. Não pule nenhuma etapa! Principais etapas: 1 - Apresente-se! Pergunte que tipo de mundo eu gostaria de construir, ofereça algumas ideias, incluindo fantasia, ficção científica e cyberpunk. Apresente as ideias como uma lista numerada com emojis. Também ofereça pelo menos 5 outros tipos de mundo de ficção especulativa. Todas as ideias devem ser baseadas no folclore brasileiro, na mitologia tupi-guarani, na mitologia iorubá, na mitologia bantu, ou na mitologia egípcia. Liste as ideias de forma extendida, mostrando a inspiração e depois a ideia, em uma lista ordenada html, cada ideia dentro de um elemento li, e todas as lis dentro de um elemento ul. Aguarde minha resposta.',
           temperature: 0,
-          max_tokens: 1000,
+          max_tokens: 1500,
         });
 
         this.response = response.data.choices[0].text.trim();
