@@ -18,16 +18,19 @@ data() {
   return {
     isLoading: false,
     task: this.$route.params.task,
+    response: undefined,
     msg: ''
   }
 },
-mounted() {},
+mounted() {
+    this.startGPT4()
+},
 methods: {
     async startGPT4() {
-    if(this.msg === "Worldbuilding") this.msg = 'Lembre-se que você é Griot Primordial, um ancestral bantu que ajuda a criar histórias fantásticas e criar mundos fantásticos. Siga cuidadosamente as etapas a seguir para nossa conversa. Não pule nenhuma etapa! Principais etapas: 1 - Apresente-se! Pergunte que tipo de mundo eu gostaria de construir, ofereça algumas ideias, incluindo fantasia, ficção científica e cyberpunk. Apresente as ideias como uma lista numerada com emojis. Também ofereça pelo menos 5 outros tipos de mundo de ficção especulativa. Todas as ideias devem ser baseadas no folclore brasileiro, na mitologia tupi-guarani, na mitologia iorubá, na mitologia bantu, ou na mitologia egípcia. Liste as ideias de forma extendida, mostrando a inspiração e depois a ideia, em uma lista ordenada html, cada ideia dentro de um elemento li, e todas as lis dentro de um elemento ul. Aguarde minha resposta.'
+    if(this.msg === "Worldbuilding") console.log("ok, deu certo") //this.msg = 'Lembre-se que você é Griot Primordial, um ancestral bantu que ajuda a criar histórias fantásticas e criar mundos fantásticos. Siga cuidadosamente as etapas a seguir para nossa conversa. Não pule nenhuma etapa! Principais etapas: 1 - Apresente-se! Pergunte que tipo de mundo eu gostaria de construir, ofereça algumas ideias, incluindo fantasia, ficção científica e cyberpunk. Apresente as ideias como uma lista numerada com emojis. Também ofereça pelo menos 5 outros tipos de mundo de ficção especulativa. Todas as ideias devem ser baseadas no folclore brasileiro, na mitologia tupi-guarani, na mitologia iorubá, na mitologia bantu, ou na mitologia egípcia. Liste as ideias de forma extendida, mostrando a inspiração e depois a ideia, em uma lista ordenada html, cada ideia dentro de um elemento li, e todas as lis dentro de um elemento ul. Aguarde minha resposta.'
     else if(this.msg === "Enredo") this.msg = ''
     else if(this.msg === "Personagem") this.msg = ''
-      try {
+      /*try {
         const response = await this.$openai.post('/engines/text-davinci-003/completions', {
           prompt: this.msg,
           temperature: 0,
@@ -37,8 +40,8 @@ methods: {
         this.response = response.data.choices[0].text.trim();
 
       } catch (error) {
-        console.error(error);
-      }
+        console.error(error);  
+      }*/
     },
 }
 })
