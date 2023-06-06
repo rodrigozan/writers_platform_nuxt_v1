@@ -2,7 +2,7 @@
   <div>
     <Header />
     <main>
-      <Sidebar />
+      <sidebar></sidebar>
       <nuxt />
     </main>
     <Footer />
@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Header from '~/components/layout/Header.vue';
-import Sidebar from '~/components/layout/Sidebar.vue';
-import Footer from '~/components/layout/Footer.vue';
+import Header from '~/components/Layout/Header.vue';
+import Sidebar from '~/components/Layout/Sidebar.vue';
+import Footer from '~/components/Layout/Footer.vue';
 
 export default {
   components: {  
