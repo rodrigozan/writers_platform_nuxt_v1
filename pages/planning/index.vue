@@ -1,58 +1,71 @@
 <template>
-    <div class="container planning">
-    <div class="content">
-        <h2 class="mb-6">{{ task }}</h2>
-        <div class="card mb-6" :loading="isLoading">
-            <div class="card-body" v-html="response"></div>
-        </div>
-    </div>
-    </div>
+  <div class="container planning">
+    <worldbuilding :task="task" :res="res"></worldbuilding>
+  </div>
 </template>
 
 <script>
 import Vue from 'vue'
 
 export default Vue.extend({
-layout: "intro",
-data() {
-  return {
-    isLoading: false,
-    task: this.$route.params.task,
-    response: undefined,
-    msg: ''
-  }
-},
-mounted() {
-    this.startGPT4()
-},
-methods: {
-    async startGPT4() {
-    if(this.msg === "Worldbuilding") console.log("ok, deu certo") //this.msg = 'Lembre-se que você é Griot Primordial, um ancestral bantu que ajuda a criar histórias fantásticas e criar mundos fantásticos. Siga cuidadosamente as etapas a seguir para nossa conversa. Não pule nenhuma etapa! Principais etapas: 1 - Apresente-se! Pergunte que tipo de mundo eu gostaria de construir, ofereça algumas ideias, incluindo fantasia, ficção científica e cyberpunk. Apresente as ideias como uma lista numerada com emojis. Também ofereça pelo menos 5 outros tipos de mundo de ficção especulativa. Todas as ideias devem ser baseadas no folclore brasileiro, na mitologia tupi-guarani, na mitologia iorubá, na mitologia bantu, ou na mitologia egípcia. Liste as ideias de forma extendida, mostrando a inspiração e depois a ideia, em uma lista ordenada html, cada ideia dentro de um elemento li, e todas as lis dentro de um elemento ul. Aguarde minha resposta.'
-    else if(this.msg === "Enredo") this.msg = ''
-    else if(this.msg === "Personagem") this.msg = ''
-      /*try {
-        const response = await this.$openai.post('/engines/text-davinci-003/completions', {
-          prompt: this.msg,
-          temperature: 0,
-          max_tokens: 1500,
-        });
-
-        this.response = response.data.choices[0].text.trim();
-
-      } catch (error) {
-        console.error(error);  
-      }*/
+  layout: 'intro',
+  data() {
+    return {
+      isLoading: false,
+      task: this.$route.params.task,
+      mitologias: '',
+      res: undefined,
+      msg: '',
+    }
+  },
+  mounted() {
+    this.startGPT4(this.task)
+  },
+  methods: {
+    storage(store) {
+      this.res = localStorage.getItem(store)
+      this.res = JSON.parse(this.res)
     },
-}
+    async startGPT4(task) {
+      this.mitologias = localStorage.getItem('mitologias')
+      this.mitologias = JSON.parse(this.mitologias)
+
+      if (task === 'Worldbuilding')
+        this.msg = `Você é ${this.mitologias.guia}, assistente divina de criação de histórias baseadas na mitologia ${this.mitologias.mitologia}.  Apresente-se e espere eu pedir algo.`
+
+      if (localStorage.getItem('Primeira resposta')) {
+        this.storage('Primeira resposta')
+        console.log("eita, rolou Zordon")
+      } else {
+        console.log("rolou não")
+        /*try {
+          const res = await this.$openai.post(
+            '/engines/text-davinci-003/completions',
+            {
+              prompt: this.msg,
+              temperature: 0,
+              max_tokens: 1500,
+            }
+          )
+          const data = res.data.choices[0].text.trim()
+          localStorage.setItem('primeira_resposta:', JSON.stringify(data))
+          this.storage('Primeira resposta')
+          console.log(this.res)
+        } catch (error) {
+          console.error(error)
+        }*/
+      }
+    },
+  },
 })
 </script>
 
 <style scoped lang="scss">
 @import '~/assets/css/main.scss';
-    .planning{
-    display: flex;
+.planning {
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  }
+}
 </style>
